@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>NirmanLabs | Build. Launch. Scale.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/agency.css" />
+</head>
+<body>
+
+<div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
+
+<div class="animated-bg" aria-hidden="true">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+</div>
+
+<header class="navbar">
+  <div class="logo">Nirman<span>Labs</span></div>
+  <nav>
+    <div class="dropdown" id="allDropdown">
+      <button id="allBtn" class="btn dropdown-toggle" type="button">All</button>
+      <div class="dropdown-menu" aria-labelledby="allBtn">
+        <a href="#">Home</a>
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#contact">Start Your Project</a>
+      </div>
+    </div>
+    <a href="#">Home</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#contact" class="btn">Contact</a>
+  </nav>
+
+</header>
+
+<section class="hero reveal" data-reveal>
+  <div class="hero-inner">
+    <div id="lottie-hero" class="lottie-hero" aria-hidden="true"></div>
+    <h1 class="hero-title">We Build SaaS Products & Websites</h1>
+    <p class="lead">From idea to launch — fast, simple, and scalable.</p>
+    <a class="btn" href="#contact">Book a Call</a>
+  </div>
+</section>
+
+<section class="services reveal" id="services" data-reveal>
+  <h2>Our Services</h2>
+  <svg class="decor-svg" viewBox="0 0 200 80" preserveAspectRatio="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="g1" x1="0" x2="1">
+        <stop offset="0" stop-color="#00ffb3" stop-opacity="0.22" />
+        <stop offset="1" stop-color="#6b64ff" stop-opacity="0.16" />
+      </linearGradient>
+    </defs>
+    <rect x="0" y="0" width="200" height="80" fill="url(#g1)" class="decor-rect" />
+  </svg>
+  <div class="cards">
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.04)"/><path d="M20 34 L28 26 L44 40" stroke="#00ffb3" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="service-label">SaaS Development</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.04)"/><path d="M22 40 L30 32 L42 44" stroke="#6b64ff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="service-label">Website Development</div>
+    </div>
+    <div class="service-card">
+      <svg class="service-icon" viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="rgba(255,255,255,0.04)"/><path d="M24 30 L34 40 L44 28" stroke="#00d2ff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="service-label">Maintenance & Growth</div>
+    </div>
+  </div>
+</section>
+
+<section class="about reveal" id="about" data-reveal>
+  <h2>Why NirmanLabs?</h2>
+  <p>We believe in building useful digital products, not just code.</p>
+</section>
+
+<section class="contact reveal" id="contact" data-reveal>
+  <h2>Start Your Project</h2>
+  <% if (sent) { %>
+    <p class="alert alert-success">Thanks — we received your message. We'll be in touch.</p>
+  <% } else if (typeof error !== 'undefined' && error) { %>
+    <p class="alert alert-danger"><%= error %></p>
+  <% } %>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Get in touch</h3>
+      <p>Tell us about your idea — we'll reply within one business day.</p>
+      <ul>
+        <li><strong>Email:</strong> hello@nirmanlabs.example</li>
+        <li><strong>Phone:</strong> +1 (555) 123-4567</li>
+        <li><strong>Address:</strong> 200 Tech Way, Suite 100, Cityville</li>
+      </ul>
+      <p>Prefer a meeting? Click <a href="#contact">Book a Call</a> or send a short message below.</p>
+    </div>
+
+    <div class="contact-form">
+      <form id="contactForm" method="POST" action="/contact">
+        <div class="row">
+          <div class="col">
+            <label for="name">Name</label>
+            <input id="name" type="text" name="name" placeholder="Your full name" required />
+          </div>
+          <div class="col">
+            <label for="email">Email</label>
+            <input id="email" type="email" name="email" placeholder="you@company.com" required />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" name="phone" placeholder="Optional" />
+          </div>
+          <div class="col">
+            <label for="subject">Subject</label>
+            <input id="subject" type="text" name="subject" placeholder="Project / Question" />
+          </div>
+        </div>
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your project, timeline, and budget" rows="5" required></textarea>
+        <div class="form-actions">
+          <button class="btn" type="submit">Send Message</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 NirmanLabs. All rights reserved.</p>
+</footer>
+</footer>
+
+<div id="cursor-follower" aria-hidden="true"></div>
+<!-- Lottie runtime -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
+<script src="/script.js"></script>
+</body>
+</html>
