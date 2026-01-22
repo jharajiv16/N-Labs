@@ -67,6 +67,9 @@ body {
   position: absolute;
   left: -1rem;
 }
+.btn {
+  text-decoration: none;
+}
 .logo {
   font-size: 22px;
   font-weight: 700;
@@ -1120,4 +1123,271 @@ select:-webkit-autofill {
     text-align: center;
     gap: 40px;
   }
+}
+
+/* --- Trusted By Section --- */
+.trusted-by {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0.7;
+}
+
+.trusted-by span {
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.trusted-by .logos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  align-items: center;
+}
+
+.trusted-by .logo-item {
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  user-select: none;
+}
+.trusted-by .logo-item:hover {
+  opacity: 1;
+}
+
+/* --- Featured Work Section --- */
+.work {
+  text-align: center;
+  padding: 80px 24px;
+}
+.section-subtitle {
+  font-size: 18px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+}
+
+.work-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.project-card {
+  flex: 1 1 450px;
+  background: var(--card-bg);
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition:
+    transform 0.4s ease,
+    box-shadow 0.4s ease;
+  text-align: left;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.project-thumb {
+  height: 240px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  overflow: hidden;
+}
+.project-thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+}
+
+/* Placeholder gradients for thumbnails */
+.project-1 {
+  background-image: url("assets/fintech.png");
+}
+.project-2 {
+  background-image: url("assets/ecommerce.png");
+}
+
+.project-info {
+  padding: 24px;
+}
+
+.project-info h3 {
+  margin-bottom: 8px;
+  font-size: 24px;
+}
+
+.project-info .tags {
+  margin-bottom: 12px;
+}
+.project-info .tags span {
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 4px 10px;
+  border-radius: 99px;
+  margin-right: 6px;
+  color: var(--text-muted);
+}
+.project-info p {
+  color: var(--text-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* --- Our Process Section --- */
+.process {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(30, 144, 255, 0.03),
+    transparent
+  );
+}
+
+.process-steps {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 0; /* Connector logic handles gap */
+  max-width: 1000px;
+  margin: 40px auto 0;
+}
+
+.step {
+  flex: 1;
+  min-width: 200px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+}
+
+.step-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--accent-b);
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 18px;
+  box-shadow: 0 0 20px rgba(30, 144, 255, 0.4);
+  position: relative;
+  z-index: 2;
+}
+
+.step h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.step p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Connector Line */
+.step-connector {
+  flex: 0 0 40px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  margin-top: 25px; /* Aligns with center of 50px circle */
+}
+
+@media (max-width: 768px) {
+  .process-steps {
+    flex-direction: column;
+    align-items: center;
+  }
+  .step-connector {
+    width: 2px;
+    height: 40px;
+    flex: 0 0 auto;
+    margin: 5px 0;
+  }
+  .step {
+    margin-bottom: 10px;
+  }
+}
+
+/* --- Testimonials Section --- */
+.testimonials {
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.testimonials-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 40px;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 16px;
+  max-width: 400px;
+  text-align: left;
+  position: relative;
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  background: rgba(255, 255, 255, 0.05);
+  transform: scale(1.02);
+}
+
+.quote-icon {
+  font-size: 60px;
+  line-height: 0.5;
+  color: var(--accent-a);
+  opacity: 0.3;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: serif;
+}
+
+.testimonial-card p {
+  font-style: italic;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+  margin-top: 10px;
+}
+
+.client-info strong {
+  display: block;
+  color: #fff;
+  font-size: 16px;
+}
+.client-info span {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 500;
 }
