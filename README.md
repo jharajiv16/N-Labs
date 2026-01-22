@@ -11,6 +11,7 @@
 - **Smooth Animations**: High-performance scroll-based revealing and staggering using GSAP ScrollTrigger.
 - **Responsive Design**: Fully adaptive layout with a mobile-first approach and custom hamburger menu.
 - **Modern UI**: Glassmorphism effects, custom SVGs, and refined typography.
+- **Rich Content**: Featured work showcase, trusted partner logos, and client testimonials.
 
 ## 🛠️ Tech Stack
 
