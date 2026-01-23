@@ -105,7 +105,7 @@ body {
 .logo {
   font-size: 22px;
   font-weight: 700;
-  color: #fff;
+  color: var(--text-main);
 }
 .logo span {
   color: var(--accent-a);
@@ -131,8 +131,8 @@ nav a {
     color 0.18s ease;
 }
 nav a:hover {
-  background: rgba(255, 255, 255, 0.02);
-  color: #fff;
+  background: var(--nav-link-hover-bg);
+  color: var(--text-main);
 }
 
 /* stronger, cleaner hero typography */
@@ -148,11 +148,12 @@ nav a:hover {
   letter-spacing: -0.02em;
   max-width: 980px;
   margin: 6px auto;
-  color: #ffffff;
+  color: var(--text-main);
 }
 .lead {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-main);
+  opacity: 0.9;
   max-width: 760px;
 }
 .hero .btn {
@@ -207,7 +208,7 @@ nav a:hover {
 
 nav a {
   margin-left: 20px;
-  color: #fff;
+  color: var(--nav-link-color);
   text-decoration: none;
 }
 
@@ -219,7 +220,7 @@ nav a {
 }
 .dropdown-toggle {
   background: transparent;
-  color: #fff;
+  color: var(--text-main);
   padding: 8px 12px;
   border-radius: 6px;
   border: 1px solid rgba(255, 255, 255, 0.06);
@@ -229,7 +230,7 @@ nav a {
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: #0f1520;
+  background: var(--dropdown-bg);
   border-radius: 8px;
   padding: 8px;
   min-width: 160px;
@@ -237,7 +238,7 @@ nav a {
 }
 .dropdown-menu a {
   display: block;
-  color: #fff;
+  color: var(--text-main);
   padding: 8px 10px;
   text-decoration: none;
 }
@@ -282,7 +283,7 @@ nav a {
   border-radius: 18px;
   width: 320px;
   height: 340px;
-  color: #fff;
+  color: var(--text-main);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -297,7 +298,7 @@ nav a {
     opacity 0.48s ease,
     box-shadow 0.45s ease;
   box-shadow:
-    0 10px 26px rgba(0, 0, 0, 0.6),
+    0 10px 26px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.02);
   border: 1px solid rgba(255, 255, 255, 0.03);
   position: relative;
@@ -428,9 +429,9 @@ nav a {
   width: 100%;
   padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: #07101b;
-  color: #fff;
+  border: 1px solid var(--input-border);
+  background: var(--input-bg);
+  color: var(--text-main);
 }
 .contact .contact-form .form-actions {
   margin-top: 12px;
@@ -566,7 +567,7 @@ footer {
   color: #ffffff;
 }
 .lead {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-main);
   margin-bottom: 18px;
 }
 
