@@ -219,4 +219,40 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+
+  // --- Theme Toggle Logic ---
+  const themeToggle = document.getElementById('themeToggle');
+  const storedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  // Function to set theme
+  const setTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  };
+
+  // Initial Theme Check
+  if (storedTheme) {
+    setTheme(storedTheme);
+  } else {
+    // Default is dark in CSS, if user prefers light we switch?
+    // Current CSS assumes dark is default (root variables).
+    // So if users prefers light, we set data-theme="light".
+    /* 
+       Actually, since the site is natively dark, maybe we just respect system pref if it is explicitly light?
+       But let's stick to: if no stored pref, default is dark (as per design).
+       Or if we want to respect system preference:
+    */
+     if (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches) {
+       // setTheme('light'); // Optional: auto-switch to light if system is light
+     }
+  }
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme');
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      setTheme(newTheme);
+    });
+  }
 });
