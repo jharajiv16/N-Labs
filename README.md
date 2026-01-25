@@ -12,6 +12,7 @@
 - **Responsive Design**: Fully adaptive layout with a mobile-first approach and custom hamburger menu.
 - **Modern UI**: Glassmorphism effects, custom SVGs, and refined typography.
 - **Rich Content**: Featured work showcase, trusted partner logos, and client testimonials.
+- **Regular Updates**: Continuous improvements and new features added regularly.
 
 ## 🛠️ Tech Stack
 
