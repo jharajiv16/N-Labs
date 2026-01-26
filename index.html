@@ -1,27 +1,39 @@
 <!doctype html>
+<!--
+  NirmanLabs Landing Page
+  Main structure including preloading fonts and linking stylesheets.
+-->
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>NirmanLabs | Build. Launch. Scale.</title>
+    <!-- Preconnect to Google Fonts for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Load custom fonts: Inter and Poppins -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- Main Agency Stylesheet -->
     <link rel="stylesheet" href="agency.css" />
   </head>
   <body>
+    <!-- Three.js Canvas Background -->
     <canvas id="webgl"></canvas>
+
+    <!-- Scroll Progress Indicator -->
     <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
 
+    <!-- Animated Background Blobs -->
     <div class="animated-bg" aria-hidden="true">
       <div class="blob b1"></div>
       <div class="blob b2"></div>
       <div class="blob b3"></div>
     </div>
 
+    <!-- Main Navigation Bar -->
     <header class="navbar">
       <div class="logo">Nirman<span>Labs</span></div>
       <button class="hamburger" aria-label="Toggle menu">
@@ -30,6 +42,7 @@
         <span></span>
       </button>
       <nav>
+        <!-- Service Category Dropdown -->
         <div class="dropdown" id="allDropdown">
           <button id="allBtn" class="btn dropdown-toggle" type="button">
             All
@@ -41,10 +54,13 @@
             <a href="#contact">Start Your Project</a>
           </div>
         </div>
+        <!-- Primary Links -->
         <a href="#">Home</a>
         <a href="#services">Services</a>
         <a href="#about">About</a>
         <a href="#contact" class="btn">Contact</a>
+
+        <!-- Theme Toggle (Light/Dark) -->
         <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
           <svg class="sun" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="5"></circle>
