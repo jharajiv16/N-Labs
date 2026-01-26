@@ -90,28 +90,32 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Reveal on scroll (IntersectionObserver)
+  // --- Scroll Reveal Animation ---
+  // Uses IntersectionObserver to trigger 'is-visible' class when elements enter viewport
   const reveals = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window && reveals.length) {
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
           e.target.classList.add('is-visible');
-          obs.unobserve(e.target);
+          obs.unobserve(e.target); // Only animate once
         }
       });
     }, { threshold: 0.12 });
     reveals.forEach(r => obs.observe(r));
   } else {
+    // Fallback for older browsers
     reveals.forEach(r => r.classList.add('is-visible'));
   }
 
-  // Cursor follower
+  // --- Custom Cursor Follower ---
+  // Creates a trailing cursor effect for better immersion
   const cursor = document.getElementById('cursor-follower');
   if (cursor) {
     let mouseX = 0, mouseY = 0, posX = 0, posY = 0;
     document.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
-    // smooth follow using requestAnimationFrame
+    
+    // Smooth follow using requestAnimationFrame (Linear Interpolation)
     const loop = () => {
       posX += (mouseX - posX) * 0.16;
       posY += (mouseY - posY) * 0.16;
@@ -119,7 +123,8 @@ document.addEventListener('DOMContentLoaded', function () {
       requestAnimationFrame(loop);
     };
     requestAnimationFrame(loop);
-    // interactive hover states
+    
+    // Interactive hover states for clickable elements
     const interactive = document.querySelectorAll('a, button, .btn');
     interactive.forEach(el => {
       el.addEventListener('mouseenter', () => cursor.classList.add('active'));
@@ -127,7 +132,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Blob parallax / subtle follow
+  // --- Animated Background Blobs Parallax ---
+  // Moves background blobs slightly opposite to mouse movement (Depth Effect)
   const blobs = document.querySelectorAll('.animated-bg .blob');
   if (blobs.length) {
     window.addEventListener('mousemove', (e) => {
@@ -140,7 +146,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // service-card tilt effect
+  // --- Service Card 3D Tilt Effect ---
+  // Adds a 3D tilt interaction on mouse hover over service cards
   const cards = document.querySelectorAll('.service-card');
   cards.forEach(card => {
     card.addEventListener('mousemove', (e) => {
@@ -150,13 +157,14 @@ document.addEventListener('DOMContentLoaded', function () {
       const rx = (dy / rect.height) * -8; const ry = (dx / rect.width) * 8;
       card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
     });
+    // Reset transform on leave
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 
-  // mark cards with accent to show subtle border glow
+  // Helper: Mark cards with data-accent if missing (for CSS styling)
   cards.forEach((c, idx) => { if (!c.hasAttribute('data-accent')) c.setAttribute('data-accent', ''); });
 
-  // Initialize Lottie animations (if lottie available)
+  // --- Lottie Animation Initialization ---
   try {
     if (window.lottie) {
       const heroContainer = document.getElementById('lottie-hero');
