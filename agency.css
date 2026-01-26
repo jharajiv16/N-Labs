@@ -334,6 +334,9 @@ nav a {
   color: var(--hero-text, rgba(255, 255, 255, 0.94));
 }
 
+/* =========================================
+   Service Cards & Grid Layout
+   ========================================= */
 .services {
   padding: 60px 24px;
   text-align: center;
@@ -346,6 +349,7 @@ nav a {
   margin-top: 30px;
 }
 
+/* Individual Card Styling */
 .service-card {
   background: var(--card-bg);
   padding: 22px 18px;
