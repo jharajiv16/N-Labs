@@ -1,19 +1,36 @@
 // enhanced script for agency page: dropdown, reveals, cursor follower, blobs, tilt, and Lottie init
+
+/**
+ * script.js - DOM Manipulations & Interactive Elements
+ * 
+ * Handles non-3D interactions such as:
+ * - Mobile Menu Toggling
+ * - Form Validation & Mock Submission
+ * - Scroll Reveal Effects
+ * - Theme Toggling
+ * - Custom Cursor & Parallax
+ */
+
 document.addEventListener('DOMContentLoaded', function () {
-  // toggle header 'All' dropdown
+  
+  // --- Header "All" Dropdown Toggle ---
+  // Toggles the visibility of the services dropdown menu
   const allBtn = document.getElementById('allBtn');
   const allDropdown = document.getElementById('allDropdown');
   if (allBtn && allDropdown) {
     allBtn.addEventListener('click', function (e) {
-      e.stopPropagation();
+      e.stopPropagation(); // Prevent closing immediately
       allDropdown.classList.toggle('show');
     });
+    
+    // Close dropdown when clicking outside
     document.addEventListener('click', function () {
       allDropdown.classList.remove('show');
     });
   }
 
   // --- Mobile Menu Toggle ---
+  // Controls the hamburger menu state and navigation visibility
   const hamburger = document.querySelector('.hamburger');
   const nav = document.querySelector('.navbar nav');
   const navLinks = document.querySelectorAll('.navbar nav a'); // Select all links
@@ -24,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
       nav.classList.toggle('is-open');
     });
 
-    // Close menu when a link is clicked
+    // Close menu when a link is clicked to improve UX
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
         hamburger.classList.remove('is-active');
@@ -34,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   // --- Form Submission Handler (Mock) ---
+  // Intercepts the contact form submission for client-side feedback
   const contactForm = document.getElementById('contactFormStatic');
   if (contactForm) {
     const btn = contactForm.querySelector('button');
@@ -52,15 +70,17 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // Simulate sending
+      // Simulate sending logic (Mock API call)
       btn.innerText = 'Sending...';
       btn.disabled = true;
 
       setTimeout(() => {
+        // Success State
         btn.innerText = 'Message Sent! ✅';
         btn.style.backgroundColor = '#10B981'; // Green success color
         contactForm.reset();
         
+        // Reset button after 3 seconds
         setTimeout(() => {
             btn.innerText = originalText;
             btn.disabled = false;
