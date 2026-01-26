@@ -1,9 +1,14 @@
+/* =========================================
+   Global Resets & Base Styles
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Inter, Arial, sans-serif;
 }
+
+/* Three.js Canvas Container */
 #webgl {
   position: fixed;
   top: 0;
@@ -12,6 +17,10 @@
   height: 100vh;
   z-index: -1; /* Behind everything */
 }
+
+/* =========================================
+   CSS Variables (Theming)
+   ========================================= */
 
 /* Original colors and fonts */
 :root {
@@ -30,6 +39,7 @@
   --input-border: rgba(255, 255, 255, 0.08);
 }
 
+/* Light Theme Overrides */
 [data-theme="light"] {
   --bg: #ffffff;
   --card-bg: #f5f5f7;
@@ -56,6 +66,7 @@
   color: var(--text-main);
 }
 
+/* Body Styling */
 body {
   margin: 0;
   height: 100%;
