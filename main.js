@@ -1,47 +1,59 @@
+/**
+ * main.js - 3D Background & Animation Entry Point
+ * 
+ * Handles imports, library configuration, and Three.js scene initialization.
+ * Uses GSAP for scroll-based interactions.
+ */
 import "./agency.css";
 import * as THREE from "three";
 
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Register GSAP ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 
-
-
 // --- Three.js Setup ---
+
+// Select the canvas element from DOM
 const canvas = document.querySelector("canvas#webgl");
+
+// Initialize Scene
 const scene = new THREE.Scene();
-scene.background = new THREE.Color("#0b0d15"); // Dark void background
+scene.background = new THREE.Color("#0b0d15"); // Dark void background suitable for space theme
 
 
-// Camera
+// Initialize Camera
+// PerspectiveCamera(fov, aspect, near, far)
 const camera = new THREE.PerspectiveCamera(
   75,
   window.innerWidth / window.innerHeight,
   0.1,
   100,
 );
-camera.position.z = 5;
+camera.position.z = 5; // Start camera back so we can see objects
 scene.add(camera);
 
-// Renderer
+// Initialize Renderer
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas,
-  alpha: true,
-  antialias: true,
+  alpha: true, // Allow transparent background if needed
+  antialias: true, // Smooth edges
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 // --- Objects ---
-// 1. Floating Particles
+
+// 1. Floating Particles System
 const particlesGeometry = new THREE.BufferGeometry();
 const particlesCount = 700;
-const posArray = new Float32Array(particlesCount * 3);
+const posArray = new Float32Array(particlesCount * 3); // x, y, z for each particle
 
+// Randomize particle positions
 for (let i = 0; i < particlesCount * 3; i++) {
-  posArray[i] = (Math.random() - 0.5) * 15;
+  posArray[i] = (Math.random() - 0.5) * 15; // Spread particles in a 15 unit cube
 }
 
 particlesGeometry.setAttribute(
@@ -49,20 +61,24 @@ particlesGeometry.setAttribute(
   new THREE.BufferAttribute(posArray, 3),
 );
 
+// Particle Material
 const material = new THREE.PointsMaterial({
     size: 0.02,
     color: "#1e90ff",
     transparent: true,
     opacity: 0.8,
 });
+
+// Create and Add Particles Mesh
 const particlesMesh = new THREE.Points(particlesGeometry, material);
 scene.add(particlesMesh);
 
 // 2. Hero Object (Wireframe Icosahedron)
+// This is the main geometric shape displayed near the hero text
 const heroGeometry = new THREE.IcosahedronGeometry(2, 0);
 const heroMaterial = new THREE.MeshBasicMaterial({ color: 0x1e90ff, wireframe: true, transparent: true, opacity: 0.3 });
 const heroMesh = new THREE.Mesh(heroGeometry, heroMaterial);
-heroMesh.position.x = 2; // Offset to right
+heroMesh.position.x = 2; // Offset to right for balance
 scene.add(heroMesh);
 
 // --- Mouse Interaction ---
