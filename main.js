@@ -90,12 +90,13 @@ let targetY = 0;
 const windowHalfX = window.innerWidth / 2;
 const windowHalfY = window.innerHeight / 2;
 
+// Track mouse position for parallax effects
 document.addEventListener("mousemove", (event) => {
     mouseX = (event.clientX - windowHalfX);
     mouseY = (event.clientY - windowHalfY);
 });
 
-// --- Scroll Animation ---
+// --- Scroll Animation Variables ---
 let scrollY = window.scrollY;
 let currentScroll = 0;
 
@@ -111,7 +112,7 @@ const tick = () => {
     const elapsedTime = clock.getElapsedTime();
 
     // 1. Particles Movement
-    particlesMesh.rotation.y = elapsedTime * 0.05;
+    particlesMesh.rotation.y = elapsedTime * 0.05; // Constant rotation
     
     // Smooth Mouse Parallax for Particles
     targetX = mouseX * 0.001;
@@ -124,10 +125,10 @@ const tick = () => {
     heroMesh.rotation.y += 0.005;
 
     // Scroll Effect (GSAP-like smoothing logic manually or use GSAP directly)
-    // Here we use linear interpolation for smoothness
+    // Lerp (Linear Interpolation) for smooth scroll tracking
     currentScroll += (scrollY - currentScroll) * 0.05; 
     
-    // Rotate/Move based on scroll
+    // Rotate/Move objects based on scroll position
     const scrollPercent = currentScroll / document.body.scrollHeight;
     camera.position.y = - currentScroll * 0.005; 
     
@@ -135,7 +136,7 @@ const tick = () => {
     heroMesh.position.z = Math.sin(elapsedTime) * 0.5; // Breathing effect
     heroMesh.rotation.z = currentScroll * 0.002;
 
-    // Example: Move hero away when scrolling down
+    // Logic: Move hero object away/fade out when scrolling down past a threshold
     if(currentScroll > 100) {
         gsap.to(heroMesh.position, { duration: 1, x: 4, opacity: 0});
         gsap.to(heroMaterial, { duration: 1, opacity: 0});
@@ -145,15 +146,17 @@ const tick = () => {
     }
 
 
-    // Render
+    // Render scene
     renderer.render(scene, camera);
 
+    // Call tick again on the next frame
     window.requestAnimationFrame(tick);
 };
 
+// Start the loop
 tick();
 
-// --- Card Animations ---
+// --- Card Animations (ScrollTrigger) ---
 gsap.utils.toArray(".service-card").forEach((card, i) => {
   gsap.fromTo(
     card,
