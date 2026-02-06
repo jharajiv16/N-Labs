@@ -9,10 +9,23 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/agency.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.160.0",
+        "gsap": "https://esm.sh/gsap@3.12.5",
+        "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger"
+      }
+    }
+  </script>
 </head>
 <body>
 
+
 <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
+
+<canvas id="webgl"></canvas>
+
 
 <div class="animated-bg" aria-hidden="true">
   <div class="blob b1"></div>
@@ -141,5 +154,6 @@
 <!-- Lottie runtime -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
 <script src="/script.js"></script>
+<script type="module" src="/main.js?v=3"></script>
 </body>
 </html>

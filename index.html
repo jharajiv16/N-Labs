@@ -18,10 +18,34 @@
     />
     <!-- Main Agency Stylesheet -->
     <link rel="stylesheet" href="agency.css" />
+    <style>
+      html {
+        background-color: #0b0d15;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://esm.sh/three@0.160.0",
+          "gsap": "https://esm.sh/gsap@3.12.5",
+          "gsap/ScrollTrigger": "https://esm.sh/gsap@3.12.5/ScrollTrigger"
+        }
+      }
+    </script>
   </head>
   <body>
     <!-- Three.js Canvas Background -->
-    <canvas id="webgl"></canvas>
+    <canvas
+      id="webgl"
+      style="
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -1;
+      "
+    ></canvas>
 
     <!-- Scroll Progress Indicator -->
     <div id="scroll-progress" aria-hidden="true"><div class="bar"></div></div>
@@ -375,7 +399,7 @@
     <div id="cursor-follower" aria-hidden="true"></div>
     <!-- Lottie runtime from CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.9.6/lottie.min.js"></script>
-    <script type="module" src="/main.js"></script>
     <script src="script.js"></script>
+    <script type="module" src="main.js?v=3"></script>
   </body>
 </html>

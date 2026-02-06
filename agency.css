@@ -8,14 +8,19 @@
   font-family: Inter, Arial, sans-serif;
 }
 
+html {
+  background-color: #0b0d15;
+}
+
 /* Three.js Canvas Container */
+
 #webgl {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  z-index: -1; /* Behind everything */
+  z-index: -1;
 }
 
 /* =========================================
