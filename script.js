@@ -250,4 +250,70 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
+  // --- Premium Interactions ---
+
+  // 1. Typing Effect for Hero Title
+  const heroTitle = document.querySelector('.hero-title');
+  if (heroTitle) {
+      const text = heroTitle.innerText; // "We Build SaaS Products & Websites"
+      heroTitle.textContent = ''; // Clear it
+      heroTitle.style.opacity = 1; // Ensure visible
+      
+      let i = 0;
+      const typeWriter = () => {
+          if (i < text.length) {
+              heroTitle.textContent += text.charAt(i);
+              i++;
+              setTimeout(typeWriter, 50); // Typing speed
+          }
+      };
+      // Start after a slight delay
+      setTimeout(typeWriter, 500);
+  }
+
+  // 2. Magnetic Buttons
+  const magneticBtns = document.querySelectorAll('.btn');
+  magneticBtns.forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+          
+          // Pull button towards mouse (Magnetic force)
+          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+      });
+
+      btn.addEventListener('mouseleave', () => {
+          // Snap back
+          btn.style.transform = 'translate(0, 0)';
+      });
+  });
+
+  // 3. Service Card Glare Effect (Enhancement to existing tilt)
+  const serviceCards = document.querySelectorAll('.service-card');
+  serviceCards.forEach(card => {
+    // Ensure glare element exists
+    let glare = card.querySelector('.glare');
+    if(!glare) {
+        glare = document.createElement('div');
+        glare.className = 'glare';
+        card.appendChild(glare);
+    }
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left; 
+      const y = e.clientY - rect.top;
+      
+      // Calculate glare position
+      glare.style.left = `${x}px`;
+      glare.style.top = `${y}px`;
+      glare.style.opacity = '1';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      glare.style.opacity = '0';
+    });
+  });
+
 });

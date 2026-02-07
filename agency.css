@@ -1423,3 +1423,40 @@ select:-webkit-autofill {
   font-size: 13px;
   font-weight: 500;
 }
+
+/* --- Premium Interaction Styles --- */
+
+/* Magnetic Button Smoothness */
+.btn {
+  transition:
+    transform 0.2s ease-out,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+  /* Ensure it sits above other things if moved */
+  position: relative;
+  z-index: 5;
+}
+
+/* Service Card Glare */
+.service-card {
+  overflow: hidden; /* Keep glare inside */
+  position: relative;
+}
+
+.glare {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  z-index: 2;
+}
