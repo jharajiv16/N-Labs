@@ -145,10 +145,36 @@ nav a:hover {
   opacity: 0.9;
   max-width: 760px;
 }
+.hero-buttons {
+  display: flex;
+  gap: 16px;
+  margin-top: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .hero .btn {
-  margin-top: 8px;
   padding: 14px 26px;
   border-radius: 14px;
+}
+.btn-outline {
+  background: transparent;
+  color: var(--text-main);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+.btn-outline::before, .btn-outline::after {
+  display: none !important;
+}
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 14px;
+  margin-top: 14px;
 }
 
 /* remove hero separator for simpler baseline */
@@ -174,7 +200,7 @@ nav a:hover {
 .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 18px 40px;
+  padding: 0 40px;
   align-items: center;
 }
 
@@ -846,11 +872,19 @@ nav a:hover::after {
 }
 
 /* form focus glow */
+.contact .contact-form input,
+.contact .contact-form textarea {
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, border-left 0.2s ease, padding-left 0.2s ease;
+  border-left: 1px solid var(--input-border);
+}
+
 .contact .contact-form input:focus,
 .contact .contact-form textarea:focus {
-  box-shadow: 0 8px 30px rgba(255, 122, 0, 0.12);
+  box-shadow: 0 8px 30px rgba(30, 144, 255, 0.15);
   outline: none;
-  border-color: rgba(255, 122, 0, 0.2);
+  border-color: rgba(30, 144, 255, 0.3);
+  border-left: 4px solid var(--accent-b);
+  padding-left: 16px;
 }
 
 /* dropdown animation */
@@ -875,23 +909,22 @@ nav a:hover::after {
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: difference;
+  background: rgba(30, 144, 255, 0.15); /* Soft glowing circle */
+  border: 1px solid rgba(30, 144, 255, 0.3);
   transform: translate(-50%, -50%) scale(0.9);
   transition:
     width 0.12s ease,
     height 0.12s ease,
     background 0.12s ease,
+    border 0.12s ease,
     transform 0.08s linear;
 }
 #cursor-follower.active {
   width: 84px;
   height: 84px;
   transform: translate(-50%, -50%) scale(1);
-  background: radial-gradient(
-    circle at 30% 30%,
-    rgba(0, 255, 179, 0.18),
-    rgba(0, 255, 179, 0.04)
-  );
+  background: rgba(30, 144, 255, 0.08); /* Lighter inside */
+  border: 1px solid rgba(30, 144, 255, 0.4);
 }
 
 /* Minimalist mode overrides: hide decorative animations, simplify UI */
@@ -969,8 +1002,20 @@ footer {
 }
 
 header {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
   z-index: 9999; /* Ensure header navigation stays above all sections */
+  transition: background 0.3s ease, padding 0.3s ease, border-bottom 0.3s ease;
+  padding: 18px 0;
+}
+header.scrolled {
+  background: rgba(11, 13, 21, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 12px 0;
 }
 
 /* Chrome / WebKit autofill override to prevent yellow background */
@@ -1441,6 +1486,23 @@ select:-webkit-autofill {
   margin-top: 10px;
 }
 
+.client-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+.client-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+.client-text {
+  display: flex;
+  flex-direction: column;
+}
 .client-info strong {
   display: block;
   color: #fff;

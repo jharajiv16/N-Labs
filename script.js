@@ -70,23 +70,49 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
       }
 
-      // Simulate sending logic (Mock API call)
+      // Real sending logic (Fetch API)
       btn.innerText = 'Sending...';
       btn.disabled = true;
+      
+      const payload = {
+        name: document.getElementById('nameStatic').value,
+        email: document.getElementById('emailStatic').value,
+        phone: document.getElementById('phoneStatic').value || '',
+        subject: document.getElementById('subjectStatic').value || '',
+        message: document.getElementById('messageStatic').value || ''
+      };
 
-      setTimeout(() => {
-        // Success State
-        btn.innerText = 'Message Sent! ✅';
-        btn.style.backgroundColor = '#10B981'; // Green success color
-        contactForm.reset();
-        
+      fetch('/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      })
+      .then(res => {
+        // The backend currently redirects or renders. If ok, we consider it a success.
+        if (res.ok || res.redirected) {
+          // Success State
+          btn.innerText = 'Message Sent! ✅';
+          btn.style.backgroundColor = '#10B981'; // Green success color
+          contactForm.reset();
+        } else {
+          throw new Error('Server returned an error');
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        btn.innerText = 'Error! Try Again ❌';
+        btn.style.backgroundColor = '#EF4444'; // Red error color
+      })
+      .finally(() => {
         // Reset button after 3 seconds
         setTimeout(() => {
             btn.innerText = originalText;
             btn.disabled = false;
             btn.style.backgroundColor = '';
         }, 3000);
-      }, 1500);
+      });
     });
   }
 
@@ -106,6 +132,35 @@ document.addEventListener('DOMContentLoaded', function () {
   } else {
     // Fallback for older browsers
     reveals.forEach(r => r.classList.add('is-visible'));
+  }
+
+  // --- Stats Count-Up Animation ---
+  const countUps = document.querySelectorAll('.count-up');
+  if ('IntersectionObserver' in window && countUps.length) {
+    const statsObs = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = parseInt(el.getAttribute('data-target'), 10);
+          const duration = 2000; // 2 seconds
+          const stepTime = Math.abs(Math.floor(duration / target));
+          let current = 0;
+          
+          const timer = setInterval(() => {
+            current += 1;
+            el.innerText = current;
+            if (current >= target) {
+              el.innerText = target;
+              clearInterval(timer);
+            }
+          }, Math.max(stepTime, 10)); // max running frequency
+          
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    
+    countUps.forEach(c => statsObs.observe(c));
   }
 
   // --- Custom Cursor Follower ---
@@ -182,17 +237,31 @@ document.addEventListener('DOMContentLoaded', function () {
     console.warn('Lottie init failed:', err);
   }
 
-  // scroll progress bar
+  // scroll progress bar && sticky header
   const progressBar = document.querySelector('#scroll-progress .bar');
-  if (progressBar) {
-    const update = () => {
+  const header = document.querySelector('header.navbar');
+  
+  const updateScroll = () => {
+    // Progress
+    if (progressBar) {
       const h = document.documentElement.scrollHeight - window.innerHeight;
       const pct = h > 0 ? (window.scrollY / h) * 100 : 0;
       progressBar.style.width = pct + '%';
-    };
-    update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    }
+    // Header
+    if (header) {
+      if (window.scrollY > 40) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    }
+  };
+  
+  if (progressBar || header) {
+    updateScroll(); // initial state
+    window.addEventListener('scroll', updateScroll, { passive: true });
+    window.addEventListener('resize', updateScroll);
   }
 
   // button ripple effect
