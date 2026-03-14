@@ -339,56 +339,57 @@ nav a {
   gap: 40px;
   align-items: flex-start;
   justify-content: center;
-  .service-card:hover {
-    transform: translateY(-10px) scale(1.03);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-  }
   max-width: 1100px;
-
-  /* Desktop layout: text + illustration side-by-side */
-  @media (min-width: 960px) {
-    .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      align-items: center;
-      gap: 40px;
-    }
-    .hero-title {
-      font-size: 48px;
-      text-align: left;
-    }
-    .lead {
-      text-align: left;
-    }
-    .lottie-hero {
-      position: static;
-      width: 420px;
-      height: 420px;
-      transform: translateY(0);
-      justify-self: end;
-      opacity: 1;
-    }
-    .cards {
-      gap: 28px;
-    }
-  }
-
-  /* Mobile adjustments: keep Lottie small and below text */
-  @media (max-width: 600px) {
-    .hero-title {
-      font-size: 28px;
-    }
-    .lottie-hero {
-      width: 180px;
-      height: 180px;
-      transform: translateY(10px);
-    }
-    .cards {
-      flex-direction: column;
-      gap: 18px;
-    }
-  }
   margin: 0 auto;
+}
+
+.contact .contact-grid .service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+/* Desktop layout: text + illustration side-by-side */
+@media (min-width: 960px) {
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 40px;
+  }
+  .hero-title {
+    font-size: 48px;
+    text-align: left;
+  }
+  .lead {
+    text-align: left;
+  }
+  .lottie-hero {
+    position: static;
+    width: 420px;
+    height: 420px;
+    transform: translateY(0);
+    justify-self: end;
+    opacity: 1;
+  }
+  .cards {
+    gap: 28px;
+  }
+}
+
+/* Mobile adjustments: keep Lottie small and below text */
+@media (max-width: 600px) {
+  .hero-title {
+    font-size: 28px;
+  }
+  .lottie-hero {
+    width: 180px;
+    height: 180px;
+    transform: translateY(10px);
+  }
+  .cards {
+    flex-direction: column;
+    gap: 18px;
+  }
 }
 .contact .contact-info {
   flex: 1 1 320px;
@@ -562,11 +563,7 @@ footer {
   color: #ffffff;
 }
 .lead {
-  .lead {
-    color: var(--text-main);
-    margin-bottom: 18px;
-  }
-
+  color: var(--text-main);
   margin-bottom: 18px;
 }
 
@@ -952,12 +949,16 @@ nav a:hover::after {
 }
 
 /* ensure content above animated bg */
-header,
 main,
 section,
 footer {
   position: relative;
   z-index: 2;
+}
+
+header {
+  position: relative;
+  z-index: 9999; /* Ensure header navigation stays above all sections */
 }
 
 /* Chrome / WebKit autofill override to prevent yellow background */
@@ -1006,14 +1007,18 @@ select:-webkit-autofill {
     display: flex;
   }
 
+  .navbar {
+    padding: 16px 24px;
+  }
+
   /* Hide standard nav by default on mobile */
   .navbar nav {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 75%;
+    width: 100%;
     height: 100vh;
-    background: rgba(11, 13, 21, 0.95);
+    background: rgba(11, 13, 21, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     flex-direction: column;
