@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', function () {
         message: document.getElementById('messageStatic').value || ''
       };
 
-      fetch('/contact', {
+      fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
